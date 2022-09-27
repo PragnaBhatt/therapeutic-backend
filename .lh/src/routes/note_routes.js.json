@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/routes/note_routes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1662552839022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662552851561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,21 @@\n const express = require(\"express\");\r\n const {\r\n-  createBookmark,\r\n-  getAllBookmarks,\r\n-  getSingleBookmark,\r\n-  updateBookmark,\r\n-  deleteBookmark,\r\n-  deleteAllBookmark,\r\n-} = require(\"../controllers/Bookmark_controller\");\r\n+  createNote,\r\n+  getAllNotes,\r\n+  getSingleNote,\r\n+  updateNote,\r\n+  deleteNote,\r\n+  deleteAllNote,\r\n+} = require(\"../controllers/Note_controller\");\r\n const { auth } = require(\"../middlewares/authentication_middleware.js\");\r\n-const BookmarkRoute = express.Router();\r\n+const NoteRoute = express.Router();\r\n \r\n-BookmarkRoute.route(\"/createBookmark\").post(auth, createBookmark);\r\n-BookmarkRoute.route(\"/getAllBookmarks\").get(auth, getAllBookmarks);\r\n+NoteRoute.route(\"/createNote\").post(auth, createNote);\r\n+NoteRoute.route(\"/getAllNotes\").get(auth, getAllNotes);\r\n \r\n-BookmarkRoute.route(\"/getSingleBookmark/:id\").get(auth, getSingleBookmark);\r\n-BookmarkRoute.route(\"/updateBookmark/:id\").patch(auth, updateBookmark);\r\n-BookmarkRoute.route(\"/deleteBookmark/:id\").delete(auth, deleteBookmark);\r\n-BookmarkRoute.route(\"/deleteAllBookmark\").delete(auth, deleteAllBookmark);\r\n+NoteRoute.route(\"/getSingleNote/:id\").get(auth, getSingleNote);\r\n+NoteRoute.route(\"/updateNote/:id\").patch(auth, updateNote);\r\n+NoteRoute.route(\"/deleteNote/:id\").delete(auth, deleteNote);\r\n+NoteRoute.route(\"/deleteAllNote\").delete(auth, deleteAllNote);\r\n \r\n-module.exports = BookmarkRoute;\r\n+module.exports = NoteRoute;\r\n"
+                },
+                {
+                    "date": 1662552861508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   getSingleNote,\r\n   updateNote,\r\n   deleteNote,\r\n   deleteAllNote,\r\n-} = require(\"../controllers/Note_controller\");\r\n+} = require(\"../controllers/note_controller\");\r\n const { auth } = require(\"../middlewares/authentication_middleware.js\");\r\n const NoteRoute = express.Router();\r\n \r\n NoteRoute.route(\"/createNote\").post(auth, createNote);\r\n"
+                }
+            ],
+            "date": 1662552839022,
+            "name": "Commit-0",
+            "content": "const express = require(\"express\");\r\nconst {\r\n  createBookmark,\r\n  getAllBookmarks,\r\n  getSingleBookmark,\r\n  updateBookmark,\r\n  deleteBookmark,\r\n  deleteAllBookmark,\r\n} = require(\"../controllers/Bookmark_controller\");\r\nconst { auth } = require(\"../middlewares/authentication_middleware.js\");\r\nconst BookmarkRoute = express.Router();\r\n\r\nBookmarkRoute.route(\"/createBookmark\").post(auth, createBookmark);\r\nBookmarkRoute.route(\"/getAllBookmarks\").get(auth, getAllBookmarks);\r\n\r\nBookmarkRoute.route(\"/getSingleBookmark/:id\").get(auth, getSingleBookmark);\r\nBookmarkRoute.route(\"/updateBookmark/:id\").patch(auth, updateBookmark);\r\nBookmarkRoute.route(\"/deleteBookmark/:id\").delete(auth, deleteBookmark);\r\nBookmarkRoute.route(\"/deleteAllBookmark\").delete(auth, deleteAllBookmark);\r\n\r\nmodule.exports = BookmarkRoute;\r\n"
+        }
+    ]
+}

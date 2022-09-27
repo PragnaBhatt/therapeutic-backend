@@ -1,0 +1,94 @@
+{
+    "sourceFile": "src/models/bookmarks_model.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 19,
+            "patches": [
+                {
+                    "date": 1662545938556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662546244121,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,6 @@\n const mongoose = require(\"mongoose\");\r\n+byUser : {\r\n+    type: mongoose.Schema.Types.ObjectId,\r\n+    ref: \"User\",\r\n+    required: true\r\n+},\r\n"
+                },
+                {
+                    "date": 1662546257831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,35 @@\n const mongoose = require(\"mongoose\");\r\n+const userModel = require(\"../models/user_model\");\r\n+const postSchema = mongoose.Schema({\r\n+    title: {\r\n+        type: String,\r\n+        required: [\r\n+            true, \"title is required\"\r\n+        ],\r\n+        minlength: [\r\n+            3, \"title length minimum is 3\"\r\n+        ],\r\n+        maxlength: [\r\n+            150, \"title length maximum is 150\"\r\n+        ],\r\n+        trim: true\r\n+    },\r\n+\r\n+    description: {\r\n+        type: String,\r\n+        required: [\r\n+            true, \" description is required\"\r\n+        ],\r\n+        minlength: [\r\n+            100, \"description length minimum is 100\"\r\n+        ],\r\n+        maxlength: [\r\n+            1000, \"description length maximum is 1000\"\r\n+        ],\r\n+        trim: true\r\n+    },\r\n+\r\n byUser : {\r\n     type: mongoose.Schema.Types.ObjectId,\r\n     ref: \"User\",\r\n     required: true\r\n"
+                },
+                {
+                    "date": 1662546278169,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const mongoose = require(\"mongoose\");\r\n const userModel = require(\"../models/user_model\");\r\n-const postSchema = mongoose.Schema({\r\n+const bookmarkScheme = mongoose.Schema({\r\n     title: {\r\n         type: String,\r\n         required: [\r\n             true, \"title is required\"\r\n"
+                },
+                {
+                    "date": 1662546286306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,8 @@\n const mongoose = require(\"mongoose\");\r\n const userModel = require(\"../models/user_model\");\r\n-const bookmarkScheme = mongoose.Schema({\r\n-    title: {\r\n-        type: String,\r\n-        required: [\r\n-            true, \"title is required\"\r\n-        ],\r\n-        minlength: [\r\n-            3, \"title length minimum is 3\"\r\n-        ],\r\n-        maxlength: [\r\n-            150, \"title length maximum is 150\"\r\n-        ],\r\n-        trim: true\r\n-    },\r\n+const bookmarkSchema = mongoose.Schema({\r\n+  \r\n \r\n     description: {\r\n         type: String,\r\n         required: [\r\n"
+                },
+                {
+                    "date": 1662546292832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,4 +21,5 @@\n     type: mongoose.Schema.Types.ObjectId,\r\n     ref: \"User\",\r\n     required: true\r\n },\r\n+}\r\n"
+                },
+                {
+                    "date": 1662546304171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,25 +1,17 @@\n const mongoose = require(\"mongoose\");\r\n const userModel = require(\"../models/user_model\");\r\n const bookmarkSchema = mongoose.Schema({\r\n-  \r\n+  description: {\r\n+    type: String,\r\n+    required: [true, \" description is required\"],\r\n+    minlength: [100, \"description length minimum is 100\"],\r\n+    maxlength: [1000, \"description length maximum is 1000\"],\r\n+    trim: true,\r\n+  },\r\n \r\n-    description: {\r\n-        type: String,\r\n-        required: [\r\n-            true, \" description is required\"\r\n-        ],\r\n-        minlength: [\r\n-            100, \"description length minimum is 100\"\r\n-        ],\r\n-        maxlength: [\r\n-            1000, \"description length maximum is 1000\"\r\n-        ],\r\n-        trim: true\r\n-    },\r\n-\r\n-byUser : {\r\n+  byUser: {\r\n     type: mongoose.Schema.Types.ObjectId,\r\n     ref: \"User\",\r\n-    required: true\r\n-},\r\n-}\r\n+    required: true,\r\n+  },\r\n+},);\r\n"
+                },
+                {
+                    "date": 1662546310447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,20 @@\n const mongoose = require(\"mongoose\");\r\n const userModel = require(\"../models/user_model\");\r\n-const bookmarkSchema = mongoose.Schema({\r\n-  description: {\r\n-    type: String,\r\n-    required: [true, \" description is required\"],\r\n-    minlength: [100, \"description length minimum is 100\"],\r\n-    maxlength: [1000, \"description length maximum is 1000\"],\r\n-    trim: true,\r\n-  },\r\n+const bookmarkSchema = mongoose.Schema(\r\n+  {\r\n+    description: {\r\n+      type: String,\r\n+      required: [true, \" description is required\"],\r\n+      minlength: [100, \"description length minimum is 100\"],\r\n+      maxlength: [1000, \"description length maximum is 1000\"],\r\n+      trim: true,\r\n+    },\r\n \r\n-  byUser: {\r\n-    type: mongoose.Schema.Types.ObjectId,\r\n-    ref: \"User\",\r\n-    required: true,\r\n+    byUser: {\r\n+      type: mongoose.Schema.Types.ObjectId,\r\n+      ref: \"User\",\r\n+      required: true,\r\n+    },\r\n   },\r\n-},);\r\n+  { timestamps: true }\r\n+);\r\n"
+                },
+                {
+                    "date": 1662546325779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,6 +15,6 @@\n       ref: \"User\",\r\n       required: true,\r\n     },\r\n   },\r\n-  { timestamps: true }\r\n+  { timestamps: true \r\n );\r\n"
+                },
+                {
+                    "date": 1662546337380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,6 +15,6 @@\n       ref: \"User\",\r\n       required: true,\r\n     },\r\n   },\r\n-  { timestamps: true \r\n+  { timestamps: true }\r\n );\r\n"
+                },
+                {
+                    "date": 1662546359104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,4 +17,9 @@\n     },\r\n   },\r\n   { timestamps: true }\r\n );\r\n+\r\n+const userModel = mongoose.model(\"User\", userSchema);\r\n+\r\n+module.exports = userModel;\r\n+\r\n"
+                },
+                {
+                    "date": 1662546373854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,8 @@\n   },\r\n   { timestamps: true }\r\n );\r\n \r\n-const userModel = mongoose.model(\"User\", userSchema);\r\n+const bookmark = mongoose.model(\"User\", userSchema);\r\n \r\n module.exports = userModel;\r\n \r\n"
+                },
+                {
+                    "date": 1662546382248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,8 @@\n   },\r\n   { timestamps: true }\r\n );\r\n \r\n-const bookmark = mongoose.model(\"User\", userSchema);\r\n+const bookmarkModel = mongoose.model(\"BookMark\", userSchema);\r\n \r\n module.exports = userModel;\r\n \r\n"
+                },
+                {
+                    "date": 1662546387456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,8 @@\n   },\r\n   { timestamps: true }\r\n );\r\n \r\n-const bookmarkModel = mongoose.model(\"BookMark\", userSchema);\r\n+const bookmarkModel = mongoose.model(\"BookMark\", bookmarkSchema);\r\n \r\n module.exports = userModel;\r\n \r\n"
+                },
+                {
+                    "date": 1662546393914,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,5 @@\n );\r\n \r\n const bookmarkModel = mongoose.model(\"BookMark\", bookmarkSchema);\r\n \r\n-module.exports = userModel;\r\n-\r\n+module.exports = bookmarkModel;\r\n"
+                },
+                {
+                    "date": 1662546416993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n const mongoose = require(\"mongoose\");\r\n-const userModel = require(\"../models/user_model\");\r\n const bookmarkSchema = mongoose.Schema(\r\n   {\r\n     description: {\r\n       type: String,\r\n"
+                },
+                {
+                    "date": 1662546549284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,12 @@\n     byUser: {\r\n       type: mongoose.Schema.Types.ObjectId,\r\n       ref: \"User\",\r\n       required: true,\r\n+    }, byUser: {\r\n+      type: mongoose.Schema.Types.ObjectId,\r\n+      ref: \"User\",\r\n+      required: true,\r\n     },\r\n   },\r\n   { timestamps: true }\r\n );\r\n"
+                },
+                {
+                    "date": 1662546563971,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,11 +12,13 @@\n     byUser: {\r\n       type: mongoose.Schema.Types.ObjectId,\r\n       ref: \"User\",\r\n       required: true,\r\n-    }, byUser: {\r\n+    },\r\n+    forProduct: {\r\n       type: mongoose.Schema.Types.ObjectId,\r\n-      ref: \"User\",\r\n+      ref: \"FoodModel\",\r\n+\r\n       required: true,\r\n     },\r\n   },\r\n   { timestamps: true }\r\n"
+                },
+                {
+                    "date": 1662548642901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,8 @@\n     },\r\n     forProduct: {\r\n       type: mongoose.Schema.Types.ObjectId,\r\n       ref: \"FoodModel\",\r\n-\r\n       required: true,\r\n     },\r\n   },\r\n   { timestamps: true }\r\n"
+                },
+                {
+                    "date": 1662548774929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n   {\r\n     description: {\r\n       type: String,\r\n       required: [true, \" description is required\"],\r\n-      minlength: [100, \"description length minimum is 100\"],\r\n+      minlength: [10, \"description length minimum is 100\"],\r\n       maxlength: [1000, \"description length maximum is 1000\"],\r\n       trim: true,\r\n     },\r\n \r\n"
+                }
+            ],
+            "date": 1662545938555,
+            "name": "Commit-0",
+            "content": "const mongoose = require(\"mongoose\");\r\n"
+        }
+    ]
+}

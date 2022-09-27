@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/utils/jwt.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1662547502315,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1662547502315,
+            "name": "Commit-0",
+            "content": "const jwt = require(\"jsonwebtoken\");\r\nconst generateJwtToken = (userId) => {\r\n  // const token = jwt.sign({ data: userId }, \"PraGna\", { expiresIn: 60 * 60 });\r\n  const token = jwt.sign({ data: userId }, \"PraGna\", { expiresIn: 1600 * 160 });\r\n  return token;\r\n};\r\nmodule.exports = generateJwtToken;\r\n"
+        }
+    ]
+}

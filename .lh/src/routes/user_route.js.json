@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/routes/user_route.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1662547423965,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1662547423965,
+            "name": "Commit-0",
+            "content": "const express = require(\"express\");\r\n//middleware\r\nconst {\r\n  auth,\r\n  authBeforeLogin,\r\n} = require(\"../middlewares/authentication_middleware\");\r\n\r\nconst {\r\n  createNewUser,\r\n  verifyNewUser,\r\n  reSendOTP,\r\n\r\n  loginUser,\r\n  updateUser,\r\n  changePassword,\r\n\r\n  forgotPassword,\r\n} = require(\"../controllers/user_controller\");\r\nconst uploadFile = require(\"../middlewares/fileupload_middleware\");\r\n\r\nconst userRoute = express.Router();\r\n\r\nuserRoute\r\n  .route(\"/createNewUser\")\r\n  .post(uploadFile.single(\"userPhoto\"), createNewUser);\r\nuserRoute.route(\"/verifyNewUser\").post(verifyNewUser);\r\nuserRoute.route(\"/reSendOTP\").get(reSendOTP);\r\n\r\n// userRoute.route(\"/loginUser\").post(auth, loginUser);\r\nuserRoute.route(\"/loginUser\").post(loginUser);\r\n\r\nuserRoute.route(\"/updateUser\").patch(auth, updateUser);\r\nuserRoute.route(\"/changePassword\").post(auth, changePassword);\r\n\r\nuserRoute.route(\"/forgotPassword\").post(auth, forgotPassword);\r\n//logout should be delete to delete all cookies\r\n\r\nmodule.exports = userRoute;\r\n"
+        }
+    ]
+}

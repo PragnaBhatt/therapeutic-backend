@@ -1,0 +1,82 @@
+{
+    "sourceFile": "index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 16,
+            "patches": [
+                {
+                    "date": 1662524993395,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662526436411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,32 +17,36 @@\n // app.use(express.json());\r\n // app.use(bodyParser.urlencoded({ extended: true }));\r\n \r\n app.use(\r\n-    express.urlencoded({\r\n-        extended: true,\r\n-    })\r\n+  express.urlencoded({\r\n+    extended: true,\r\n+  })\r\n );\r\n \r\n app.use(express.json());\r\n // app.use(bodyParser.json());\r\n \r\n app.get(\"/\", (req, res) => {\r\n-    res.status( StatusCodes.OK).json({ status: StatusCodes.OK, message: \"working...\" });\r\n+  res\r\n+    .status(StatusCodes.OK)\r\n+    .json({ status: StatusCodes.OK, message: \"working...\" });\r\n });\r\n app.use(\"/food\", foodRoutes);\r\n+app.use('/prod_images', express.static('prod_images'));\r\n+\r\n+\r\n app.use(notFoundMiddleware);\r\n app.use(errorHandlerMiddleware);\r\n \r\n // const PORT = process.env.PORT || 5000;\r\n const PORT = 5000;\r\n-const start = async() => {\r\n-    try {\r\n\\ No newline at end of file\n-        await connectDB(process.env.MONGO_URI);\r\n-        app.listen(PORT, () => console.log(\"connected sucessfully...\"));\r\n-    } catch (e) {\r\n-        console.log(e);\r\n-    }\r\n-\r\n+const start = async () => {\r\n+  try {\r\n+    await connectDB(process.env.MONGO_URI);\r\n+    app.listen(PORT, () => console.log(\"connected sucessfully...\"));\r\n+  } catch (e) {\r\n+    console.log(e);\r\n+  }\r\n };\r\n \r\n-start();\n+start();\r\n"
+                },
+                {
+                    "date": 1662526449982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     .status(StatusCodes.OK)\r\n     .json({ status: StatusCodes.OK, message: \"working...\" });\r\n });\r\n app.use(\"/food\", foodRoutes);\r\n-app.use('/prod_images', express.static('prod_images'));\r\n+app.use('/images', express.static('prod_images'));\r\n \r\n \r\n app.use(notFoundMiddleware);\r\n app.use(errorHandlerMiddleware);\r\n"
+                },
+                {
+                    "date": 1662526456017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,11 +31,10 @@\n     .status(StatusCodes.OK)\r\n     .json({ status: StatusCodes.OK, message: \"working...\" });\r\n });\r\n app.use(\"/food\", foodRoutes);\r\n-app.use('/images', express.static('prod_images'));\r\n+app.use(\"/images\", express.static(\"images\"));\r\n \r\n-\r\n app.use(notFoundMiddleware);\r\n app.use(errorHandlerMiddleware);\r\n \r\n // const PORT = process.env.PORT || 5000;\r\n"
+                },
+                {
+                    "date": 1662546861146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,9 @@\n     .status(StatusCodes.OK)\r\n     .json({ status: StatusCodes.OK, message: \"working...\" });\r\n });\r\n app.use(\"/food\", foodRoutes);\r\n+app.use(\"/food\", foodRoutes);\r\n app.use(\"/images\", express.static(\"images\"));\r\n \r\n app.use(notFoundMiddleware);\r\n app.use(errorHandlerMiddleware);\r\n"
+                },
+                {
+                    "date": 1662546884084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n const errorHandlerMiddleware = require(\"./src/middlewares/error-handler\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n //routes\r\n const foodRoutes = require(\"./src/routes/food_route\");\r\n+const foodRoutes = require(\"./src/routes/food_route\");\r\n app.use(morgan(\"tiny\"));\r\n // app.use(express.json());\r\n // app.use(bodyParser.urlencoded({ extended: true }));\r\n \r\n@@ -31,9 +32,9 @@\n     .status(StatusCodes.OK)\r\n     .json({ status: StatusCodes.OK, message: \"working...\" });\r\n });\r\n app.use(\"/food\", foodRoutes);\r\n-app.use(\"/food\", foodRoutes);\r\n+app.use(\"/food/bookmarks\", foodRoutes);\r\n app.use(\"/images\", express.static(\"images\"));\r\n \r\n app.use(notFoundMiddleware);\r\n app.use(errorHandlerMiddleware);\r\n"
+                },
+                {
+                    "date": 1662546891132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,10 @@\n const errorHandlerMiddleware = require(\"./src/middlewares/error-handler\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n //routes\r\n const foodRoutes = require(\"./src/routes/food_route\");\r\n-const foodRoutes = require(\"./src/routes/food_route\");\r\n+const BookmarkRoute = require(\"./src/routes/bookmark_routes\");\r\n+\r\n app.use(morgan(\"tiny\"));\r\n // app.use(express.json());\r\n // app.use(bodyParser.urlencoded({ extended: true }));\r\n \r\n"
+                },
+                {
+                    "date": 1662546898608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n const errorHandlerMiddleware = require(\"./src/middlewares/error-handler\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n //routes\r\n const foodRoutes = require(\"./src/routes/food_route\");\r\n-const BookmarkRoute = require(\"./src/routes/bookmark_routes\");\r\n+const bookmarkRoute = require(\"./src/routes/bookmark_routes\");\r\n \r\n app.use(morgan(\"tiny\"));\r\n // app.use(express.json());\r\n // app.use(bodyParser.urlencoded({ extended: true }));\r\n"
+                },
+                {
+                    "date": 1662546925735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n const errorHandlerMiddleware = require(\"./src/middlewares/error-handler\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n //routes\r\n const foodRoutes = require(\"./src/routes/food_route\");\r\n-const bookmarkRoute = require(\"./src/routes/bookmark_routes\");\r\n+const BookmarkRoute = require(\"./src/routes/bookmark_routes\");\r\n \r\n app.use(morgan(\"tiny\"));\r\n // app.use(express.json());\r\n // app.use(bodyParser.urlencoded({ extended: true }));\r\n@@ -33,9 +33,10 @@\n     .status(StatusCodes.OK)\r\n     .json({ status: StatusCodes.OK, message: \"working...\" });\r\n });\r\n app.use(\"/food\", foodRoutes);\r\n-app.use(\"/food/bookmarks\", foodRoutes);\r\n+app.use(\"/food/bookmarks\", BookmarkRoute);\r\n+\r\n app.use(\"/images\", express.static(\"images\"));\r\n \r\n app.use(notFoundMiddleware);\r\n app.use(errorHandlerMiddleware);\r\n"
+                },
+                {
+                    "date": 1662547410672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n const { StatusCodes } = require(\"http-status-codes\");\r\n //routes\r\n const foodRoutes = require(\"./src/routes/food_route\");\r\n const BookmarkRoute = require(\"./src/routes/bookmark_routes\");\r\n+const BookmarkRoute = require(\"./src/routes/bookmark_routes\");\r\n \r\n app.use(morgan(\"tiny\"));\r\n // app.use(express.json());\r\n // app.use(bodyParser.urlencoded({ extended: true }));\r\n"
+                },
+                {
+                    "date": 1662547416388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n const { StatusCodes } = require(\"http-status-codes\");\r\n //routes\r\n const foodRoutes = require(\"./src/routes/food_route\");\r\n const BookmarkRoute = require(\"./src/routes/bookmark_routes\");\r\n-const BookmarkRoute = require(\"./src/routes/bookmark_routes\");\r\n+const BookmarkRoute = require(\"./src/routes/user\");\r\n \r\n app.use(morgan(\"tiny\"));\r\n // app.use(express.json());\r\n // app.use(bodyParser.urlencoded({ extended: true }));\r\n"
+                },
+                {
+                    "date": 1662547437387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n const { StatusCodes } = require(\"http-status-codes\");\r\n //routes\r\n const foodRoutes = require(\"./src/routes/food_route\");\r\n const BookmarkRoute = require(\"./src/routes/bookmark_routes\");\r\n-const BookmarkRoute = require(\"./src/routes/user\");\r\n+const userRoute = require(\"./src/routes/user_route\");\r\n \r\n app.use(morgan(\"tiny\"));\r\n // app.use(express.json());\r\n // app.use(bodyParser.urlencoded({ extended: true }));\r\n"
+                },
+                {
+                    "date": 1662547445301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,9 @@\n     .json({ status: StatusCodes.OK, message: \"working...\" });\r\n });\r\n app.use(\"/food\", foodRoutes);\r\n app.use(\"/food/bookmarks\", BookmarkRoute);\r\n+app.use(\"/food/user\", userRoute);\r\n \r\n app.use(\"/images\", express.static(\"images\"));\r\n \r\n app.use(notFoundMiddleware);\r\n"
+                },
+                {
+                    "date": 1662552967120,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n const errorHandlerMiddleware = require(\"./src/middlewares/error-handler\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n //routes\r\n const foodRoutes = require(\"./src/routes/food_route\");\r\n-const BookmarkRoute = require(\"./src/routes/bookmark_routes\");\r\n+const BookmarkRoute = require(\"./src/routes/\");\r\n const userRoute = require(\"./src/routes/user_route\");\r\n \r\n app.use(morgan(\"tiny\"));\r\n // app.use(express.json());\r\n"
+                },
+                {
+                    "date": 1662552983513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,10 @@\n const errorHandlerMiddleware = require(\"./src/middlewares/error-handler\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n //routes\r\n const foodRoutes = require(\"./src/routes/food_route\");\r\n-const BookmarkRoute = require(\"./src/routes/\");\r\n+const NoteRoute = require(\"./src/routes/note_routes\");\r\n+\r\n const userRoute = require(\"./src/routes/user_route\");\r\n \r\n app.use(morgan(\"tiny\"));\r\n // app.use(express.json());\r\n"
+                },
+                {
+                    "date": 1662552990866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n     .status(StatusCodes.OK)\r\n     .json({ status: StatusCodes.OK, message: \"working...\" });\r\n });\r\n app.use(\"/food\", foodRoutes);\r\n-app.use(\"/food/bookmarks\", BookmarkRoute);\r\n+app.use(\"/food/note\", BookmarkRoute);\r\n app.use(\"/food/user\", userRoute);\r\n \r\n app.use(\"/images\", express.static(\"images\"));\r\n \r\n"
+                },
+                {
+                    "date": 1662555472569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,10 @@\n     .status(StatusCodes.OK)\r\n     .json({ status: StatusCodes.OK, message: \"working...\" });\r\n });\r\n app.use(\"/food\", foodRoutes);\r\n-app.use(\"/food/note\", BookmarkRoute);\r\n+app.use(\"/food/note\", NoteRoute);\r\n+\r\n app.use(\"/food/user\", userRoute);\r\n \r\n app.use(\"/images\", express.static(\"images\"));\r\n \r\n"
+                }
+            ],
+            "date": 1662524993395,
+            "name": "Commit-0",
+            "content": "const express = require(\"express\");\r\n// var bodyParser = require(\"body-parser\");\r\n\r\n//database connection\r\nconst connectDB = require(\"./src/config/db\");\r\nrequire(\"dotenv\").config();\r\nconst app = express();\r\nconst morgan = require(\"morgan\");\r\n\r\n// middleware\r\nconst notFoundMiddleware = require(\"./src/middlewares/not-found_middleware\");\r\nconst errorHandlerMiddleware = require(\"./src/middlewares/error-handler\");\r\nconst { StatusCodes } = require(\"http-status-codes\");\r\n//routes\r\nconst foodRoutes = require(\"./src/routes/food_route\");\r\napp.use(morgan(\"tiny\"));\r\n// app.use(express.json());\r\n// app.use(bodyParser.urlencoded({ extended: true }));\r\n\r\napp.use(\r\n    express.urlencoded({\r\n        extended: true,\r\n    })\r\n);\r\n\r\napp.use(express.json());\r\n// app.use(bodyParser.json());\r\n\r\napp.get(\"/\", (req, res) => {\r\n    res.status( StatusCodes.OK).json({ status: StatusCodes.OK, message: \"working...\" });\r\n});\r\napp.use(\"/food\", foodRoutes);\r\napp.use(notFoundMiddleware);\r\napp.use(errorHandlerMiddleware);\r\n\r\n// const PORT = process.env.PORT || 5000;\r\nconst PORT = 5000;\r\nconst start = async() => {\r\n    try {\r\n        await connectDB(process.env.MONGO_URI);\r\n        app.listen(PORT, () => console.log(\"connected sucessfully...\"));\r\n    } catch (e) {\r\n        console.log(e);\r\n    }\r\n\r\n};\r\n\r\nstart();"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/middlewares/fileupload_middleware.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1662547611852,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662547618538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,10 @@\n const multer = require(\"multer\");\r\n const path = require(\"path\");\r\n const USER_IMAGE_FOLDER_NAME = process.env.USER_IMAGE_FOLDER_NAME;\r\n \r\n-\r\n-\r\n const storageEngine = multer.diskStorage({\r\n-destination : USER_IMAGE_FOLDER_NAME,\r\n+  destination: USER_IMAGE_FOLDER_NAME,\r\n \r\n   filename: function (req, file, fn) {\r\n     fn(\r\n       null,\r\n"
+                }
+            ],
+            "date": 1662547611852,
+            "name": "Commit-0",
+            "content": "const multer = require(\"multer\");\r\nconst path = require(\"path\");\r\nconst USER_IMAGE_FOLDER_NAME = process.env.USER_IMAGE_FOLDER_NAME;\r\n\r\n\r\n\r\nconst storageEngine = multer.diskStorage({\r\ndestination : USER_IMAGE_FOLDER_NAME,\r\n\r\n  filename: function (req, file, fn) {\r\n    fn(\r\n      null,\r\n      new Date().getTime().toString() +\r\n        \"_category_\" +\r\n        file.fieldname +\r\n        path.extname(file.originalname)\r\n    );\r\n  },\r\n});\r\n\r\nconst uploadFile = multer({\r\n  storage: storageEngine,\r\n  limits: {\r\n    fileSize: 10000000, // unit in to bytes\r\n  },\r\n  fileFilter(req, file, callback) {\r\n    if (!file) {\r\n      console.log(\"no file attached......\");\r\n    }\r\n    console.log(\"test file name...\" + file.originalname);\r\n    console.log(file.originalname);\r\n    var ext = file.originalname;\r\n    if (!ext.match(/\\.(png|jpg|gif|jpeg)$/)) {\r\n      return callback(\r\n        new Error(\"Only images (.png,.jpg,.gif,.jpeg) are allowed\")\r\n      );\r\n    }\r\n    callback(null, true);\r\n  },\r\n});\r\n\r\nmodule.exports = uploadFile;\r\n"
+        }
+    ]
+}

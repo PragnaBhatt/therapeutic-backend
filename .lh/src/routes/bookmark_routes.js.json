@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/routes/bookmark_routes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1662546812789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662546824786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,5 @@\n BookmarkRoute.route(\"/getSingleBookmark/:id\").get(auth, getSingleBookmark);\r\n BookmarkRoute.route(\"/updateBookmark/:id\").patch(auth, updateBookmark);\r\n BookmarkRoute.route(\"/deleteBookmark/:id\").delete(auth, deleteBookmark);\r\n \r\n-module.exports = CommentRoute;\r\n+module.exports = BookmarkRoute;\r\n"
+                },
+                {
+                    "date": 1662552182783,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n \r\n BookmarkRoute.route(\"/getSingleBookmark/:id\").get(auth, getSingleBookmark);\r\n BookmarkRoute.route(\"/updateBookmark/:id\").patch(auth, updateBookmark);\r\n BookmarkRoute.route(\"/deleteBookmark/:id\").delete(auth, deleteBookmark);\r\n-BookmarkRoute.route(\"/deleteAllBookmark/:id\").delete(auth, deleteBookmark);\r\n+BookmarkRoute.route(\"/deleteAllBookmark/:id\").delete(auth, deleteAllBookmark);\r\n \r\n \r\n+\r\n module.exports = BookmarkRoute;\r\n"
+                }
+            ],
+            "date": 1662546812789,
+            "name": "Commit-0",
+            "content": "const express = require(\"express\");\r\nconst {\r\n    createComment,\r\n    getAllComments,\r\n    getSingleComment,\r\n    updateComment,\r\n    deleteComment\r\n} = require(\"../controllers/comment_controller\");\r\nconst {auth} = require(\"../middlewares/authentication_middleware.js\");\r\nconst CommentRoute = express.Router();\r\n\r\nCommentRoute.route(\"/createComment\").post(auth, createComment);\r\nCommentRoute.route(\"/getAllComments\").get(getAllComments);\r\nCommentRoute.route(\"/getSingleComment/:id\").get(auth, getSingleComment);\r\nCommentRoute.route(\"/updateComment/:id\").patch(auth, updateComment);\r\nCommentRoute.route(\"/deleteComment/:id\").delete(auth, deleteComment);\r\n\r\nmodule.exports = CommentRoute;\r\n"
+        }
+    ]
+}

@@ -1,0 +1,162 @@
+{
+    "sourceFile": "src/controllers/food_controller.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 36,
+            "patches": [
+                {
+                    "date": 1662525088897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662525094889,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,16 @@\n-const foodModel=require('../models/food_model')\r\n-const asyncWrapper=require('../middlewares/asyncWrappers')\r\n-const statusCodes=require('http-status-codes')\r\n-const fetchFoodProducts=asyncWrapper(async (req,res,next)=>{\r\n-\r\n-    res.status(statusCodes.OK).json({data:\"test\"})\r\n-\r\n-\r\n+const foodModel = require(\"../models/food_model\");\r\n+const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n+const statusCodes = require(\"http-status-codes\");\r\n+const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n+  res.status(statusCodes.OK).json({ data: \"test\" });\r\n });\r\n \r\n+const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n+  await foodModel.insertMany(req.body);\r\n \r\n-const addFoodProducts=asyncWrapper(async (req, res, next) => {\r\n-    await foodModel.insertMany(req.body)\r\n-\r\n-    res.status(stat.OK).json({status: 1, message: \"inserted !!\"});\r\n-\r\n-\r\n+  res\r\n+    .status(statusCodes.StatusCodes.OK)\r\n+    .json({ status: 1, message: \"inserted !!\" });\r\n });\r\n \r\n-\r\n-    module.exports ={ fetchFoodProducts,addFoodProducts};\r\n-\r\n+module.exports = { fetchFoodProducts, addFoodProducts };\r\n"
+                },
+                {
+                    "date": 1662527128325,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n \r\n   res\r\n-    .status(statusCodes.StatusCodes.OK)\r\n+    .status(statusCodes.StatusCodes.cre)\r\n     .json({ status: 1, message: \"inserted !!\" });\r\n });\r\n \r\n module.exports = { fetchFoodProducts, addFoodProducts };\r\n"
+                },
+                {
+                    "date": 1662527143555,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,20 @@\n const foodModel = require(\"../models/food_model\");\r\n const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n const statusCodes = require(\"http-status-codes\");\r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n+\r\n+\r\n+\r\n+  \r\n   res.status(statusCodes.OK).json({ data: \"test\" });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n \r\n   res\r\n-    .status(statusCodes.StatusCodes.cre)\r\n+    .status(statusCodes.StatusCodes.CREATED)\r\n     .json({ status: 1, message: \"inserted !!\" });\r\n });\r\n \r\n module.exports = { fetchFoodProducts, addFoodProducts };\r\n"
+                },
+                {
+                    "date": 1662527176252,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,11 @@\n const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n const statusCodes = require(\"http-status-codes\");\r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n \r\n+await foodModel.\r\n \r\n \r\n-  \r\n   res.status(statusCodes.OK).json({ data: \"test\" });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n"
+                },
+                {
+                    "date": 1662527181939,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n const statusCodes = require(\"http-status-codes\");\r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n \r\n-await foodModel.\r\n+await foodModel.find({});\r\n \r\n \r\n   res.status(statusCodes.OK).json({ data: \"test\" });\r\n });\r\n"
+                },
+                {
+                    "date": 1662527188213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n const statusCodes = require(\"http-status-codes\");\r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n \r\n-await foodModel.find({});\r\n+const data=await foodModel.find({});\r\n \r\n \r\n   res.status(statusCodes.OK).json({ data: \"test\" });\r\n });\r\n"
+                },
+                {
+                    "date": 1662527195266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n const data=await foodModel.find({});\r\n \r\n \r\n-  res.status(statusCodes.OK).json({ data: \"test\" });\r\n+  res.status(statusCodes.OK).json({ data });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662527202131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n const data=await foodModel.find({});\r\n \r\n \r\n-  res.status(statusCodes.OK).json({ data });\r\n+  res.status(statusCodes.OK).json({ total:  data });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662527209699,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n const data=await foodModel.find({});\r\n \r\n \r\n-  res.status(statusCodes.OK).json({ total:  data });\r\n+  res.status(statusCodes.OK).json({ total: data.len, data });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662527274466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,11 @@\n const foodModel = require(\"../models/food_model\");\r\n const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n const statusCodes = require(\"http-status-codes\");\r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n+  const data = await foodModel.find({}).ra;\r\n \r\n-const data=await foodModel.find({});\r\n-\r\n-\r\n-  res.status(statusCodes.OK).json({ total: data.len, data });\r\n+  res.status(statusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662527320304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const foodModel = require(\"../models/food_model\");\r\n const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n const statusCodes = require(\"http-status-codes\");\r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.find({}).ra;\r\n+  const data = await foodModel.find({}).ran;\r\n \r\n   res.status(statusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662527360523,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,11 @@\n const foodModel = require(\"../models/food_model\");\r\n const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n const statusCodes = require(\"http-status-codes\");\r\n+require(\"mongoose-query-random\");\r\n+\r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.find({}).ran;\r\n+  const data = await foodModel.find({}).random;\r\n \r\n   res.status(statusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662527369226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const statusCodes = require(\"http-status-codes\");\r\n require(\"mongoose-query-random\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.find({}).random;\r\n+  const data = await foodModel.find({}).random(5);\r\n \r\n   res.status(statusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662527382439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const statusCodes = require(\"http-status-codes\");\r\n require(\"mongoose-query-random\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.find({}).random(5);\r\n+  const data = await foodModel.find({}).random(5, true);\r\n \r\n   res.status(statusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662527410992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   const data = await foodModel.find({}).random(5, true);\r\n \r\n-  res.status(statusCodes.OK).json({ total: data.length, data });\r\n+  res.status(statusCodes.OK).json({ data });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662527422319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const statusCodes = require(\"http-status-codes\");\r\n require(\"mongoose-query-random\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.find({}).random(5, true);\r\n+  const data = await foodModel.find().random(5, true);\r\n \r\n   res.status(statusCodes.OK).json({ data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662527516014,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,11 @@\n const foodModel = require(\"../models/food_model\");\r\n const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n const statusCodes = require(\"http-status-codes\");\r\n-require(\"mongoose-query-random\");\r\n-\r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.find().random(5, true);\r\n+  const data = await foodModel.find({});\r\n \r\n-  res.status(statusCodes.OK).json({ data });\r\n+  res.status(statusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662527581723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n const foodModel = require(\"../models/food_model\");\r\n const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n const statusCodes = require(\"http-status-codes\");\r\n+var random = require(\"mongoose-random\");\r\n+\r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   const data = await foodModel.find({});\r\n \r\n   res.status(statusCodes.OK).json({ total: data.length, data });\r\n"
+                },
+                {
+                    "date": 1662527609414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   const data = await foodModel.find({});\r\n \r\n-  res.status(statusCodes.OK).json({ total: data.length, data });\r\n+  res.status(statusCodes.).json({ total: data.length, data });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662527615300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   const data = await foodModel.find({});\r\n \r\n-  res.status(statusCodes.).json({ total: data.length, data });\r\n+  res.status(Stat).json({ total: data.length, data });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662527620695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   const data = await foodModel.find({});\r\n \r\n-  res.status(Stat).json({ total: data.length, data });\r\n+  res.status(statusCodes.StatusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662527631268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,12 @@\n const foodModel = require(\"../models/food_model\");\r\n const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n-const statusCodes = require(\"http-status-codes\");\r\n var random = require(\"mongoose-random\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   const data = await foodModel.find({});\r\n \r\n-  res.status(statusCodes.StatusCodes.OK).json({ total: data.length, data });\r\n+  res.status(StatusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662527671486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n const foodModel = require(\"../models/food_model\");\r\n const asyncWrapper = require(\"../middlewares/asyncWrappers\");\r\n var random = require(\"mongoose-random\");\r\n+const { StatusCodes } = require(\"http-status-codes\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   const data = await foodModel.find({});\r\n \r\n@@ -10,10 +11,8 @@\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n \r\n-  res\r\n-    .status(statusCodes.StatusCodes.CREATED)\r\n-    .json({ status: 1, message: \"inserted !!\" });\r\n+  res.status(StatusCodes.CREATED).json({ status: 1, message: \"inserted !!\" });\r\n });\r\n \r\n module.exports = { fetchFoodProducts, addFoodProducts };\r\n"
+                },
+                {
+                    "date": 1662527692919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n var random = require(\"mongoose-random\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.find({});\r\n+  const data = await foodModel.findra({});\r\n \r\n   res.status(StatusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662527699479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n var random = require(\"mongoose-random\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.findra({});\r\n+  const data = await foodModel.findRandom({});\r\n \r\n   res.status(StatusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662527714200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n var random = require(\"mongoose-random\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.findRandom({});\r\n+  const data = await foodModel.findRandom();\r\n \r\n   res.status(StatusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662527727304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n var random = require(\"mongoose-random\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.findRandom();\r\n+  const data = await foodModel.findRandom().limit(10);\r\n \r\n   res.status(StatusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662527737927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n var random = require(\"mongoose-random\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.findRandom().limit(10);\r\n+  const data =  foodModel.findRandom().limit(10);\r\n \r\n   res.status(StatusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662527748904,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,12 @@\n var random = require(\"mongoose-random\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data =  foodModel.findRandom().limit(10);\r\n+  // const data =  foodModel.findRandom().limit(10);\r\n \r\n-  res.status(StatusCodes.OK).json({ total: data.length, data });\r\n+  // res.status(StatusCodes.OK).json({ total: data.length, data });\r\n+  \r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662527754950,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,15 @@\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   // const data =  foodModel.findRandom().limit(10);\r\n \r\n   // res.status(StatusCodes.OK).json({ total: data.length, data });\r\n-  \r\n+foodModel.findRandom().limit(10).exec(function (err, songs) {\r\n+\r\n+    console.log(songs);\r\n });\r\n \r\n+});\r\n+\r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n \r\n   res.status(StatusCodes.CREATED).json({ status: 1, message: \"inserted !!\" });\r\n"
+                },
+                {
+                    "date": 1662527888928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,15 +6,17 @@\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   // const data =  foodModel.findRandom().limit(10);\r\n \r\n   // res.status(StatusCodes.OK).json({ total: data.length, data });\r\n-foodModel.findRandom().limit(10).exec(function (err, songs) {\r\n-\r\n-    console.log(songs);\r\n+  foodModel\r\n+    .findRandom()\r\n+    .limit(10)\r\n+    .exec(function (err, songs) {\r\n+      console.log(songs);\r\n+      console.log(songs);\r\n+    });\r\n });\r\n \r\n-});\r\n-\r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n \r\n   res.status(StatusCodes.CREATED).json({ status: 1, message: \"inserted !!\" });\r\n"
+                },
+                {
+                    "date": 1662528041864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,18 +3,11 @@\n var random = require(\"mongoose-random\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  // const data =  foodModel.findRandom().limit(10);\r\n+  const data = await foodModel.findRandom().limit(10);\r\n \r\n-  // res.status(StatusCodes.OK).json({ total: data.length, data });\r\n-  foodModel\r\n-    .findRandom()\r\n-    .limit(10)\r\n-    .exec(function (err, songs) {\r\n-      console.log(songs);\r\n-      console.log(songs);\r\n-    });\r\n+  res.status(StatusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n const addFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   await foodModel.insertMany(req.body);\r\n"
+                },
+                {
+                    "date": 1662528060802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n var random = require(\"mongoose-random\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.findRandom().limit(10);\r\n+  const data = await foodModel.findRandom().limit(10).skip;\r\n \r\n   res.status(StatusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662528084140,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n var random = require(\"mongoose-random\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.findRandom().limit(10).skip;\r\n+  const data = await foodModel.find().limit(10).skip(22);\r\n \r\n   res.status(StatusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662528147275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n var random = require(\"mongoose-random\");\r\n const { StatusCodes } = require(\"http-status-codes\");\r\n \r\n const fetchFoodProducts = asyncWrapper(async (req, res, next) => {\r\n-  const data = await foodModel.find({}).limit(10).skip(22);\r\n+  const data = await foodModel.find({}).limit(10).skip(2);\r\n \r\n   res.status(StatusCodes.OK).json({ total: data.length, data });\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1662529956339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n const updateTimeFoodProducts = asyncWrapper(async (req, res, next) => {\r\n   const update = await foodModel.updateOne({\r\n _id: \"63182205bbd8b36bc16fa35c\",\r\n \r\n-  },{name:\"\"});\r\n+  },{name:\"Whole wheat\"});\r\n \r\n   res.status(StatusCodes.CREATED).json({ status: 1, message: \"updated !!\" });\r\n });\r\n \r\n"
+                }
+            ],
+            "date": 1662525088896,
+            "name": "Commit-0",
+            "content": "const foodModel=require('../models/food_model')\r\nconst asyncWrapper=require('../middlewares/asyncWrappers')\r\nconst statusCodes=require('http-status-codes')\r\nconst fetchFoodProducts=asyncWrapper(async (req,res,next)=>{\r\n\r\n    res.status(statusCodes.OK).json({data:\"test\"})\r\n\r\n\r\n});\r\n\r\n\r\nconst addFoodProducts=asyncWrapper(async (req, res, next) => {\r\n    await foodModel.insertMany(req.body)\r\n\r\n    res.status(stat.OK).json({status: 1, message: \"inserted !!\"});\r\n\r\n\r\n});\r\n\r\n\r\n    module.exports ={ fetchFoodProducts,addFoodProducts};\r\n\r\n"
+        }
+    ]
+}

@@ -1,0 +1,118 @@
+{
+    "sourceFile": "src/models/product_model.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 25,
+            "patches": [
+                {
+                    "date": 1662465372049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662465378823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-const \n\\ No newline at end of file\n+const mongoose =require\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1662465383964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-const mongoose =require\n\\ No newline at end of file\n+const mongoose =require('mongoose')\r\n"
+                },
+                {
+                    "date": 1662465391055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,2 @@\n const mongoose =require('mongoose')\r\n+const food\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1662465396830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n const mongoose =require('mongoose')\r\n-const food\n\\ No newline at end of file\n+const foodSchema=mongoose.\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1662465402690,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n const mongoose =require('mongoose')\r\n-const foodSchema=mongoose.\n\\ No newline at end of file\n+const foodSchema=mongoose.Schema({});\r\n"
+                },
+                {
+                    "date": 1662465411947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,3 @@\n const mongoose =require('mongoose')\r\n const foodSchema=mongoose.Schema({});\r\n+module.exports=\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1662465418062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n const mongoose =require('mongoose')\r\n const foodSchema=mongoose.Schema({});\r\n-module.exports=\n\\ No newline at end of file\n+module.exports=mongoose.\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1662465425362,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n const mongoose =require('mongoose')\r\n const foodSchema=mongoose.Schema({});\r\n-module.exports=mongoose.\n\\ No newline at end of file\n+module.exports=mongoose.model('FoodModel')\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1662465430625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n const mongoose =require('mongoose')\r\n const foodSchema=mongoose.Schema({});\r\n-module.exports=mongoose.model('FoodModel')\n\\ No newline at end of file\n+module.exports=mongoose.model('FoodModel',foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465438202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,8 @@\n const mongoose =require('mongoose')\r\n-const foodSchema=mongoose.Schema({});\r\n+const foodSchema=mongoose.Schema({\r\n+\r\n+category\r\n+\r\n+\r\n+});\r\n module.exports=mongoose.model('FoodModel',foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465445389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n const mongoose =require('mongoose')\r\n const foodSchema=mongoose.Schema({\r\n \r\n-category\r\n+category:{\r\n+    type:\r\n+}\r\n \r\n \r\n });\r\n module.exports=mongoose.model('FoodModel',foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465452517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const mongoose =require('mongoose')\r\n const foodSchema=mongoose.Schema({\r\n \r\n category:{\r\n-    type:\r\n+    type:mongoose.Types.\r\n }\r\n \r\n \r\n });\r\n"
+                },
+                {
+                    "date": 1662465476265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const mongoose =require('mongoose')\r\n const foodSchema=mongoose.Schema({\r\n \r\n category:{\r\n-    type:mongoose.Types.\r\n+    type:mongoose.Schema.ObjectId\r\n }\r\n \r\n \r\n });\r\n"
+                },
+                {
+                    "date": 1662465481701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n const foodSchema=mongoose.Schema({\r\n \r\n category:{\r\n     type:mongoose.Schema.ObjectId\r\n+    \r\n }\r\n \r\n \r\n });\r\n"
+                },
+                {
+                    "date": 1662465487291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n const foodSchema=mongoose.Schema({\r\n \r\n category:{\r\n     type:mongoose.Schema.ObjectId\r\n-    \r\n+    ref\r\n }\r\n \r\n \r\n });\r\n"
+                },
+                {
+                    "date": 1662465493395,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n const mongoose =require('mongoose')\r\n const foodSchema=mongoose.Schema({\r\n \r\n-category:{\r\n-    type:mongoose.Schema.ObjectId\r\n-    ref\r\n-}\r\n+// category:{\r\n+//     type:mongoose.Schema.ObjectId\r\n+//     ref\r\n+// }\r\n \r\n \r\n });\r\n module.exports=mongoose.model('FoodModel',foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465500227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,10 @@\n // category:{\r\n //     type:mongoose.Schema.ObjectId\r\n //     ref\r\n // }\r\n+name:{\r\n+    type:\r\n+}\r\n \r\n-\r\n });\r\n module.exports=mongoose.model('FoodModel',foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465510227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n //     type:mongoose.Schema.ObjectId\r\n //     ref\r\n // }\r\n name:{\r\n-    type:\r\n+    type:String,\r\n+    required:tr\r\n }\r\n \r\n });\r\n module.exports=mongoose.model('FoodModel',foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465518035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,10 @@\n //     ref\r\n // }\r\n name:{\r\n     type:String,\r\n-    required:tr\r\n+    required:true,\r\n+    minlen\r\n }\r\n \r\n });\r\n module.exports=mongoose.model('FoodModel',foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465528714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n // }\r\n name:{\r\n     type:String,\r\n     required:true,\r\n-    minlen\r\n+    minlenght\r\n }\r\n \r\n });\r\n module.exports=mongoose.model('FoodModel',foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465534250,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n // }\r\n name:{\r\n     type:String,\r\n     required:true,\r\n-    minlenght\r\n+    minlength:3\r\n }\r\n \r\n });\r\n module.exports=mongoose.model('FoodModel',foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465542646,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,10 @@\n // }\r\n name:{\r\n     type:String,\r\n     required:true,\r\n-    minlength:3\r\n+    minlength:3,\r\n+    maxlength:\r\n }\r\n \r\n });\r\n module.exports=mongoose.model('FoodModel',foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465563300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,14 @@\n-const mongoose =require('mongoose')\r\n-const foodSchema=mongoose.Schema({\r\n-\r\n-// category:{\r\n-//     type:mongoose.Schema.ObjectId\r\n-//     ref\r\n-// }\r\n-name:{\r\n-    type:String,\r\n-    required:true,\r\n-    minlength:3,\r\n-    maxlength:\r\n-}\r\n-\r\n+const mongoose = require(\"mongoose\");\r\n+const foodSchema = mongoose.Schema({\r\n+  // category:{\r\n+  //     type:mongoose.Schema.ObjectId\r\n+  //     ref\r\n+  // }\r\n+  name: {\r\n+    type: String,\r\n+    required: true,\r\n+    minlength: [3,\r\n+    maxlength: 40,\r\n+  },\r\n });\r\n-module.exports=mongoose.model('FoodModel',foodSchema);\r\n+module.exports = mongoose.model(\"FoodModel\", foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465569940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   // }\r\n   name: {\r\n     type: String,\r\n     required: true,\r\n-    minlength: [3,'name ',\r\n+    minlength: [3,'name i',\r\n     maxlength: 40,\r\n   },\r\n });\r\n module.exports = mongoose.model(\"FoodModel\", foodSchema);\r\n"
+                },
+                {
+                    "date": 1662465575259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   // }\r\n   name: {\r\n     type: String,\r\n     required: true,\r\n-    minlength: [3,'name is too short',\r\n+    minlength: [3,'name is too short'',\r\n     maxlength: 40,\r\n   },\r\n });\r\n module.exports = mongoose.model(\"FoodModel\", foodSchema);\r\n"
+                }
+            ],
+            "date": 1662465372049,
+            "name": "Commit-0",
+            "content": "const "
+        }
+    ]
+}

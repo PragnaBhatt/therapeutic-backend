@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/models/notes_model.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1662552801518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662552814326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n const mongoose = require(\"mongoose\");\r\n-const bookmarkSchema = mongoose.Schema(\r\n+const noteSchema = mongoose.Schema(\r\n   {\r\n     description: {\r\n       type: String,\r\n       required: [true, \" description is required\"],\r\n@@ -22,7 +22,7 @@\n   },\r\n   { timestamps: true }\r\n );\r\n \r\n-const bookmarkModel = mongoose.model(\"Notes\", bookmarkSchema);\r\n+const noteModel = mongoose.model(\"Notes\", noteSchema);\r\n \r\n-module.exports = bookmarkModel;\r\n+module.exports = noteModel;\r\n"
+                }
+            ],
+            "date": 1662552801518,
+            "name": "Commit-0",
+            "content": "const mongoose = require(\"mongoose\");\r\nconst bookmarkSchema = mongoose.Schema(\r\n  {\r\n    description: {\r\n      type: String,\r\n      required: [true, \" description is required\"],\r\n      minlength: [5, \"description length minimum is 100\"],\r\n      maxlength: [1000, \"description length maximum is 1000\"],\r\n      trim: true,\r\n    },\r\n\r\n    byUser: {\r\n      type: mongoose.Schema.Types.ObjectId,\r\n      ref: \"User\",\r\n      required: true,\r\n    },\r\n    forProduct: {\r\n      type: mongoose.Schema.Types.ObjectId,\r\n      ref: \"FoodModel\",\r\n      required: true,\r\n    },\r\n  },\r\n  { timestamps: true }\r\n);\r\n\r\nconst bookmarkModel = mongoose.model(\"Notes\", bookmarkSchema);\r\n\r\nmodule.exports = bookmarkModel;\r\n"
+        }
+    ]
+}
