@@ -43,7 +43,14 @@ const createNote = asyncWrapper(async (req, res, next) => {
     .json({ status: 1, message: "Note added", Note });
 });
 const getAllNotes = asyncWrapper(async (req, res, next) => {
-  const allNote = await notesModel.find({ byUser: req.authUser._id });
+  const allNote = await notesModel
+    .find({ byUser: req.authUser._id })
+    .populate({ path: "forProduct", select: "name image type noOfViews" })
+
+    .populate({ path: "byUser", select: "name photo" });
+
+  //   .select("id name type image description noOfViews");
+
   // .populate({path: "food", select: "name company price category -_id"}) // working OK and removed _id
 
   // .populate({ path: "food", select: "name company price category _id" }).populate({path: "food"}).populate({path: "user", select: "name email _id"});

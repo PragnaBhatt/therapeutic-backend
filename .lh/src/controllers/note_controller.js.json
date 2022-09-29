@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 11,
             "patches": [
                 {
                     "date": 1662552886666,
@@ -12,6 +12,46 @@
                 {
                     "date": 1662552912402,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n const foodModel = require(\"../models/food_model\");\r\n const CustomAPIError = require(\"../errors/custom_api_error\");\r\n const BadRequestError = require(\"../errors/bad_request_error\");\r\n const NotFoundError = require(\"../errors/not-found_error\");\r\n-const noteModel = require(\"../models/notes_model\");\r\n const createNote = asyncWrapper(async (req, res, next) => {\r\n   const authUser = req.authUser;\r\n   console.log(authUser.name);\r\n   const forProduct = req.body.forProduct;\r\n"
+                },
+                {
+                    "date": 1664454910576,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,10 @@\n     .status(StatusCodes.CREATED)\r\n     .json({ status: 1, message: \"Note added\", Note });\r\n });\r\n const getAllNotes = asyncWrapper(async (req, res, next) => {\r\n-  const allNote = await notesModel.find({ byUser: req.authUser._id });\r\n+const allNote = await notesModel.find({byUser: req.authUser._id}).select(\"id name type image description noOfViews\");\r\n+\r\n   // .populate({path: \"food\", select: \"name company price category -_id\"}) // working OK and removed _id\r\n \r\n   // .populate({ path: \"food\", select: \"name company price category _id\" }).populate({path: \"food\"}).populate({path: \"user\", select: \"name email _id\"});\r\n \r\n"
+                },
+                {
+                    "date": 1664454942249,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,11 @@\n     .status(StatusCodes.CREATED)\r\n     .json({ status: 1, message: \"Note added\", Note });\r\n });\r\n const getAllNotes = asyncWrapper(async (req, res, next) => {\r\n-const allNote = await notesModel.find({byUser: req.authUser._id}).select(\"id name type image description noOfViews\");\r\n+  const allNote = await notesModel\r\n+    .find({ byUser: req.authUser._id })\r\n+    .select(\"id name type image description noOfViews\");\r\n \r\n   // .populate({path: \"food\", select: \"name company price category -_id\"}) // working OK and removed _id\r\n \r\n   // .populate({ path: \"food\", select: \"name company price category _id\" }).populate({path: \"food\"}).populate({path: \"user\", select: \"name email _id\"});\r\n"
+                },
+                {
+                    "date": 1664454964973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n });\r\n const getAllNotes = asyncWrapper(async (req, res, next) => {\r\n   const allNote = await notesModel\r\n     .find({ byUser: req.authUser._id })\r\n-    .select(\"id name type image description noOfViews\");\r\n+ //   .select(\"id name type image description noOfViews\");\r\n \r\n   // .populate({path: \"food\", select: \"name company price category -_id\"}) // working OK and removed _id\r\n \r\n   // .populate({ path: \"food\", select: \"name company price category _id\" }).populate({path: \"food\"}).populate({path: \"user\", select: \"name email _id\"});\r\n"
+                },
+                {
+                    "date": 1664455087490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,8 +44,11 @@\n });\r\n const getAllNotes = asyncWrapper(async (req, res, next) => {\r\n   const allNote = await notesModel\r\n     .find({ byUser: req.authUser._id })\r\n+.populate({path: \"forProduct\", select: \"_id name photoURL\"})\r\n+\r\n+\r\n  //   .select(\"id name type image description noOfViews\");\r\n \r\n   // .populate({path: \"food\", select: \"name company price category -_id\"}) // working OK and removed _id\r\n \r\n"
+                },
+                {
+                    "date": 1664455106298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n });\r\n const getAllNotes = asyncWrapper(async (req, res, next) => {\r\n   const allNote = await notesModel\r\n     .find({ byUser: req.authUser._id })\r\n-.populate({path: \"forProduct\", select: \"_id name photoURL\"})\r\n+.populate({path: \"forProduct\", select: \" name photoURL\"})\r\n \r\n \r\n  //   .select(\"id name type image description noOfViews\");\r\n \r\n"
+                },
+                {
+                    "date": 1664455141806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,13 +44,15 @@\n });\r\n const getAllNotes = asyncWrapper(async (req, res, next) => {\r\n   const allNote = await notesModel\r\n     .find({ byUser: req.authUser._id })\r\n-.populate({path: \"forProduct\", select: \" name photoURL\"})\r\n+    .populate({ path: \"forProduct\", select: \"name\" })\r\n+    \r\n+    \r\n+    ;\r\n \r\n+  //   .select(\"id name type image description noOfViews\");\r\n \r\n- //   .select(\"id name type image description noOfViews\");\r\n-\r\n   // .populate({path: \"food\", select: \"name company price category -_id\"}) // working OK and removed _id\r\n \r\n   // .populate({ path: \"food\", select: \"name company price category _id\" }).populate({path: \"food\"}).populate({path: \"user\", select: \"name email _id\"});\r\n \r\n"
+                },
+                {
+                    "date": 1664455147230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,11 +45,9 @@\n const getAllNotes = asyncWrapper(async (req, res, next) => {\r\n   const allNote = await notesModel\r\n     .find({ byUser: req.authUser._id })\r\n     .populate({ path: \"forProduct\", select: \"name\" })\r\n-    \r\n-    \r\n-    ;\r\n+    .populate({ path: \"byUser\", select: \"name\" });\r\n \r\n   //   .select(\"id name type image description noOfViews\");\r\n \r\n   // .populate({path: \"food\", select: \"name company price category -_id\"}) // working OK and removed _id\r\n"
+                },
+                {
+                    "date": 1664455166783,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n const getAllNotes = asyncWrapper(async (req, res, next) => {\r\n   const allNote = await notesModel\r\n     .find({ byUser: req.authUser._id })\r\n     .populate({ path: \"forProduct\", select: \"name\" })\r\n-    .populate({ path: \"byUser\", select: \"name\" });\r\n+    .populate({ path: \"byUser\", select: \"name,photo\" });\r\n \r\n   //   .select(\"id name type image description noOfViews\");\r\n \r\n   // .populate({path: \"food\", select: \"name company price category -_id\"}) // working OK and removed _id\r\n"
+                },
+                {
+                    "date": 1664455195398,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,10 +44,10 @@\n });\r\n const getAllNotes = asyncWrapper(async (req, res, next) => {\r\n   const allNote = await notesModel\r\n     .find({ byUser: req.authUser._id })\r\n-    .populate({ path: \"forProduct\", select: \"name\" })\r\n-    .populate({ path: \"byUser\", select: \"name,photo\" });\r\n+    .populate({ path: \"forProduct\", select: \"name \" })\r\n+    .populate({ path: \"byUser\", select: \"name photo\" });\r\n \r\n   //   .select(\"id name type image description noOfViews\");\r\n \r\n   // .populate({path: \"food\", select: \"name company price category -_id\"}) // working OK and removed _id\r\n"
+                },
+                {
+                    "date": 1664455207740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n });\r\n const getAllNotes = asyncWrapper(async (req, res, next) => {\r\n   const allNote = await notesModel\r\n     .find({ byUser: req.authUser._id })\r\n-    .populate({ path: \"forProduct\", select: \"name image \" })\r\n+    .populate({ path: \"forProduct\", select: \"name image t\" })\r\n \r\n     .populate({ path: \"byUser\", select: \"name photo\" });\r\n \r\n   //   .select(\"id name type image description noOfViews\");\r\n"
                 }
             ],
             "date": 1662552886666,
