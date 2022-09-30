@@ -55,9 +55,7 @@ const getAllNotes = asyncWrapper(async (req, res, next) => {
 
   // .populate({ path: "food", select: "name company price category _id" }).populate({path: "food"}).populate({path: "user", select: "name email _id"});
 
-  res
-    .status(StatusCodes.CREATED)
-    .json({ status: 1, message: "Note list", allNote });
+  res.status(StatusCodes.OK).json({ status: 1, message: "Note list", allNote });
 });
 
 const getSingleNote = asyncWrapper(async (req, res, next) => {
@@ -66,7 +64,10 @@ const getSingleNote = asyncWrapper(async (req, res, next) => {
   if (!NoteId) {
     throw new BadRequestError("Note id not provided");
   }
-  const Note = await notesModel.findById({ _id: NoteId });
+  const Note = await notesModel
+    .findById({ _id: NoteId })
+    .populate({ path: "forProduct", select: "name image type noOfViews" })
+    .populate({ path: "byUser", select: "name photo" });
 
   if (!Note) {
     throw new NotFoundError("no such Note available");
@@ -83,17 +84,20 @@ const updateNote = asyncWrapper(async (req, res, next) => {
   }
   // const Note = await notesModel.findById({ _id: NoteId });
   // const Note = await notesModel.findByIdAndUpdate(
-  const Note = await notesModel.findOneAndUpdate(
-    {
-      _id: NoteId,
-    },
-    req.body,
-    {
-      new: true,
-      runValidators: true,
-      strict: false,
-    }
-  );
+  const Note = await notesModel
+    .findOneAndUpdate(
+      {
+        _id: NoteId,
+      },
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+        strict: false,
+      }
+    )
+    .populate({ path: "forProduct", select: "name image type noOfViews" })
+    .populate({ path: "byUser", select: "name photo" });
 
   if (!Note) {
     throw new NotFoundError("no such Note available");
