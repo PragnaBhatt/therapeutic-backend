@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1662552801518,
@@ -12,6 +12,14 @@
                 {
                     "date": 1662552814326,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n const mongoose = require(\"mongoose\");\r\n-const bookmarkSchema = mongoose.Schema(\r\n+const noteSchema = mongoose.Schema(\r\n   {\r\n     description: {\r\n       type: String,\r\n       required: [true, \" description is required\"],\r\n@@ -22,7 +22,7 @@\n   },\r\n   { timestamps: true }\r\n );\r\n \r\n-const bookmarkModel = mongoose.model(\"Notes\", bookmarkSchema);\r\n+const noteModel = mongoose.model(\"Notes\", noteSchema);\r\n \r\n-module.exports = bookmarkModel;\r\n+module.exports = noteModel;\r\n"
+                },
+                {
+                    "date": 1664605019350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,10 @@\n       ref: \"FoodModel\",\r\n       required: true,\r\n     },\r\n   },\r\n-  { timestamps: true }, {\r\n+  { timestamps: true },\r\n+  {\r\n     toJSON: { virtuals: true },\r\n     toObject: { virtuals: true },\r\n   }\r\n );\r\n"
+                },
+                {
+                    "date": 1664605142837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,10 @@\n );\r\n noteSchema.set('toObject', { virtuals: true });\r\n \r\n \r\n-foodSchema.set('toJSON', { virtuals: true });\r\n+noteSchema.set('toJSON', { virtuals: true });\r\n \r\n+\r\n const noteModel = mongoose.model(\"Notes\", noteSchema);\r\n \r\n module.exports = noteModel;\r\n"
                 }
             ],
             "date": 1662552801518,

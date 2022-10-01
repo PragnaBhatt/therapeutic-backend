@@ -46,26 +46,32 @@ const auth = asyncWrapper(async (req, res, next) => {
 });
 
 const authBeforeLogin = asyncWrapper(async (req, res, next) => {
-  console.log("in to authenticationn");
-  console.log(req.header("authorization"));
-  const token = req.header("authorization").replace("Bearer ", "");
-  console.log("header token.... " + token);
-  console.log(req.body);
-  const decoded = jwt.verify(token, "PraGna");
+  console.log("in to authBeforeLogin ");
 
-  console.log("decoded " + decoded.data); // check utils jwt.js
+  // var authUser;
 
-  const authUser = await userModel.findOne({
-    _id: decoded.data, // check utils jwt.js
-    "tokens.token": token,
-  });
+  if (req.header("authorization")) {
+    console.log(req.header("authorization"));
+    const token = req.header("authorization").replace("Bearer ", "");
+    console.log("header token.... " + token);
+    console.log(req.body);
+    const decoded = jwt.verify(token, "PraGna");
 
-  if (!authUser) {
-    // res.status(500).send({ msg: "No such user found " });
-    throw new UnauthenticatedError("no such user foundqqqq!");
+    console.log("decoded " + decoded.data); // check utils jwt.js
+
+    const authUser = await userModel.findOne({
+      _id: decoded.data, // check utils jwt.js
+      "tokens.token": token,
+    });
+
+    if (!authUser) {
+      // res.status(500).send({ msg: "No such user found " });
+      throw new UnauthenticatedError("no such user foundqqqq!");
+    }
+    req.authUser = authUser;
+  } else {
+    req.authUser = { _id: -1 };
   }
-  req.authUser = authUser;
-
   next();
 });
 

@@ -20,8 +20,28 @@ const noteSchema = mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
 );
+noteSchema.set("toObject", { virtuals: true });
+
+noteSchema.set("toJSON", { virtuals: true });
+noteSchema.virtual("noteOfUser", {
+  ref: "FoodModel",
+
+  localField: "forProduct",
+
+  foreignField: "_id",
+  justOne: false,
+  // options: {
+  //   match: {
+  //     byUser: this._id,
+  //   },
+  // },
+});
 
 const noteModel = mongoose.model("Notes", noteSchema);
 

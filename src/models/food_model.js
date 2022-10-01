@@ -56,5 +56,19 @@ const foodSchema = mongoose.Schema(
 );
 
 // foodSchema.plugin(random, { path: "r" }); // by default `path` is `random`. It's used internally to store a random value on each doc.
+foodSchema.virtual("noteOfUser", {
+  ref: "Notes",
+  localField: "_id",
+  foreignField: "forProduct",
+  justOne: false,
+  // options: {
+  //   match: {
+  //     byUser: this._id,
+  //   },
+  // },
+});
+foodSchema.set("toObject", { virtuals: true });
+
+foodSchema.set("toJSON", { virtuals: true });
 
 module.exports = mongoose.model("FoodModel", foodSchema);

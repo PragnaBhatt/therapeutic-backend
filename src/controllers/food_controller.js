@@ -7,6 +7,11 @@ const fetchFoodProducts = asyncWrapper(async (req, res, next) => {
   //var skip = Date.now() / 9;
   console.log(req.body);
   console.log(req.body.type);
+  // var pop = {
+  //   path: "noteOfUser", // select: "_id description ",
+  //   byUser: req.authUser._id,
+  // };
+  const byUser = req.authUser._id;
 
   var data = {};
   if (req.body.type) {
@@ -14,15 +19,27 @@ const fetchFoodProducts = asyncWrapper(async (req, res, next) => {
 
     data = await foodModel
       .find({ type: req.body.type })
+      .populate({ path: "noteOfUser", match: { byUser: req.authUser._id } })
+
       .select("id name type image description noOfViews")
 
       .sort({ noOfViews: -1 });
   } else if (req.body.limit) {
-    console.log("in to limit");
+    console.log("in to limit " + req.authUser._id);
 
     data = await foodModel
       .find({})
-      .select("id name type image description noOfViews")
+      //  req.authUser._id != -1 ??
+      .populate({
+        path: "noteOfUser",
+        match: {
+          byUser: req.authUser._id,
+        },
+      })
+      // Garbanzo beans
+
+      .select("id name type image description noOfViews noteOfUser")
+
       .limit(10)
       .skip(1)
       .sort({ noOfViews: -1 });
@@ -36,6 +53,8 @@ const fetchFoodProducts = asyncWrapper(async (req, res, next) => {
     console.log("in to else");
     data = await foodModel
       .find({})
+      .populate({ path: "noteOfUser", match: { byUser: req.authUser._id } })
+
       .select("id name type image description noOfViews")
 
       .sort({ noOfViews: -1 });
