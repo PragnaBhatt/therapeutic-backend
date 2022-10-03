@@ -18,9 +18,9 @@ const createNote = asyncWrapper(async (req, res, next) => {
   // check of already Note avialbale or not with userid and prodID
   const alreadyNoteSubmitted = await notesModel.findOne({
     forProduct: forProduct,
-
     byUser: req.authUser._id,
   });
+
   console.log("already..." + alreadyNoteSubmitted);
   console.log("forProduct..." + forProduct);
 
@@ -29,14 +29,22 @@ const createNote = asyncWrapper(async (req, res, next) => {
   if (alreadyNoteSubmitted) {
     return res
       .status(StatusCodes.OK)
-      .json({ status: 1, message: "already sumitted....." });
+      .json({ status: 0, message: "already sumitted....." });
   }
   // req.body.user = authUser._id;
   // req.body.food = authUser._id;
-  const Note = await notesModel.create({
+  const noteCreate = await notesModel.create({
     ...req.body,
     byUser: authUser._id,
   });
+
+  const Note = await notesModel
+
+    .findOne({ _id: noteCreate._id })
+
+    .populate({ path: "forProduct", select: "name image type noOfViews" })
+
+    .populate({ path: "byUser", select: "name photo" });
 
   res
     .status(StatusCodes.CREATED)
