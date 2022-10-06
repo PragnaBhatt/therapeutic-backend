@@ -48,6 +48,27 @@ const fetchFoodProducts = asyncWrapper(async (req, res, next) => {
     console.log("in to id");
 
     data = await foodModel.findOne({ _id: req.body.id });
+
+    // .populate({
+    //   path: "noteOfUser",
+    //   match: {
+    //     byUser: req.authUser._id,
+    //   },
+    // });
+    //  .select("id name type image description noOfViews");
+  } else if (req.body.name) {
+    //perticular item
+    console.log("in to name");
+
+    data = await foodModel.findOne({ name: req.body.name });
+    //.
+    // populate({
+    //   path: "noteOfUser",
+    //   match: {
+    //     byUser: req.authUser._id,
+    //   },
+    // });
+    // .select("id name type image description noOfViews");
   } else {
     //all data
     console.log("in to else");
@@ -59,7 +80,11 @@ const fetchFoodProducts = asyncWrapper(async (req, res, next) => {
 
       .sort({ noOfViews: -1 });
   }
-  res.status(StatusCodes.OK).json({ total: data.length, data });
+  if (data) {
+    res.status(StatusCodes.OK).json({ total: data.length, data });
+  } else {
+    res.status(StatusCodes.OK).json({ status: 0, message: "No data" });
+  }
 });
 
 const addFoodProducts = asyncWrapper(async (req, res, next) => {

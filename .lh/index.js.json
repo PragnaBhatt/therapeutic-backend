@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 16,
+            "activePatchIndex": 21,
             "patches": [
                 {
                     "date": 1662524993395,
@@ -72,6 +72,26 @@
                 {
                     "date": 1662555472569,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,10 @@\n     .status(StatusCodes.OK)\r\n     .json({ status: StatusCodes.OK, message: \"working...\" });\r\n });\r\n app.use(\"/food\", foodRoutes);\r\n-app.use(\"/food/note\", BookmarkRoute);\r\n+app.use(\"/food/note\", NoteRoute);\r\n+\r\n app.use(\"/food/user\", userRoute);\r\n \r\n app.use(\"/images\", express.static(\"images\"));\r\n \r\n"
+                },
+                {
+                    "date": 1665031542118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n const foodRoutes = require(\"./src/routes/food_route\");\r\n const NoteRoute = require(\"./src/routes/note_routes\");\r\n \r\n const userRoute = require(\"./src/routes/user_route\");\r\n+const userRoute = require(\"./src/routes/user_route\");\r\n \r\n app.use(morgan(\"tiny\"));\r\n // app.use(express.json());\r\n // app.use(bodyParser.urlencoded({ extended: true }));\r\n"
+                },
+                {
+                    "date": 1665031552612,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n const foodRoutes = require(\"./src/routes/food_route\");\r\n const NoteRoute = require(\"./src/routes/note_routes\");\r\n \r\n const userRoute = require(\"./src/routes/user_route\");\r\n-const userRoute = require(\"./src/routes/user_route\");\r\n+const diseasesRoute = require(\"./src/routes/diseases_route\");\r\n \r\n app.use(morgan(\"tiny\"));\r\n // app.use(express.json());\r\n // app.use(bodyParser.urlencoded({ extended: true }));\r\n"
+                },
+                {
+                    "date": 1665031559633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,11 @@\n app.use(\"/food\", foodRoutes);\r\n app.use(\"/food/note\", NoteRoute);\r\n \r\n app.use(\"/food/user\", userRoute);\r\n+app.use(\"/diseases/user\", userRoute);\r\n \r\n+\r\n app.use(\"/images\", express.static(\"images\"));\r\n \r\n app.use(notFoundMiddleware);\r\n app.use(errorHandlerMiddleware);\r\n"
+                },
+                {
+                    "date": 1665031569815,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,11 +39,12 @@\n app.use(\"/food\", foodRoutes);\r\n app.use(\"/food/note\", NoteRoute);\r\n \r\n app.use(\"/food/user\", userRoute);\r\n-app.use(\"/diseases/user\", userRoute);\r\n+app.use(\"/diseases/diseases\", userRoute);\r\n \r\n \r\n+\r\n app.use(\"/images\", express.static(\"images\"));\r\n \r\n app.use(notFoundMiddleware);\r\n app.use(errorHandlerMiddleware);\r\n"
+                },
+                {
+                    "date": 1665031576260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n app.use(\"/food\", foodRoutes);\r\n app.use(\"/food/note\", NoteRoute);\r\n \r\n app.use(\"/food/user\", userRoute);\r\n-app.use(\"/food/diseases\", d);\r\n+app.use(\"/food/diseases\", diseasesRoute);\r\n \r\n \r\n \r\n app.use(\"/images\", express.static(\"images\"));\r\n"
                 }
             ],
             "date": 1662524993395,

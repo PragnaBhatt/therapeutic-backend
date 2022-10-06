@@ -16,6 +16,7 @@ const foodRoutes = require("./src/routes/food_route");
 const NoteRoute = require("./src/routes/note_routes");
 
 const userRoute = require("./src/routes/user_route");
+const diseasesRoute = require("./src/routes/diseases_route");
 
 app.use(morgan("tiny"));
 // app.use(express.json());
@@ -39,6 +40,7 @@ app.use("/food", foodRoutes);
 app.use("/food/note", NoteRoute);
 
 app.use("/food/user", userRoute);
+app.use("/food/diseases", diseasesRoute);
 
 app.use("/images", express.static("images"));
 
