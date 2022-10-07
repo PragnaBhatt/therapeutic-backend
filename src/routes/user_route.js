@@ -24,7 +24,7 @@ userRoute
   .route("/createNewUser")
   .post(uploadFile.single("userPhoto"), createNewUser);
 userRoute.route("/verifyNewUser").post(verifyNewUser);
-userRoute.route("/reSendOTP").get(reSendOTP);
+userRoute.route("/reSendOTP").post(reSendOTP);
 
 // userRoute.route("/loginUser").post(auth, loginUser);
 userRoute.route("/loginUser").post(loginUser);

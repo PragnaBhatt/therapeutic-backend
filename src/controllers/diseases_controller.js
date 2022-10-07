@@ -22,7 +22,7 @@ const addDiseases = asyncWrapper(async (req, res, next) => {
 
 // get all categories/types
 
-const fetch = asyncWrapper(async (req, res, next) => {
+const fetchData = asyncWrapper(async (req, res, next) => {
   // var skip = Date.now() / 9;
   var match = {};
   console.log("req.body.diseases " + req.params.diseases);
@@ -54,7 +54,7 @@ const fetch = asyncWrapper(async (req, res, next) => {
 
   res.status(StatusCodes.OK).json({ data });
 });
-const fetchData = asyncWrapper(async (req, res, next) => {
+const fetch = asyncWrapper(async (req, res, next) => {
   // var skip = Date.now() / 9;
   var match = {};
   console.log("req.params.diseases " + req.params.diseases);
@@ -101,4 +101,5 @@ const fetchData = asyncWrapper(async (req, res, next) => {
 module.exports = {
   addDiseases,
   fetch,
+  fetchData,
 };

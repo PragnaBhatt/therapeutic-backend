@@ -1,4 +1,8 @@
-const { addDiseases, fetch } = require("../controllers/diseases_controller");
+const {
+  addDiseases,
+  fetch,
+  fetchData,
+} = require("../controllers/diseases_controller");
 
 require("../middlewares/authentication_middleware.js");
 
@@ -9,6 +13,7 @@ const diseasesRoute = express.Router();
 
 diseasesRoute.route("/add").post(addDiseases);
 diseasesRoute.route("/fetch").get(fetch);
+diseasesRoute.route("/fetchData").get(fetchData);
 
 // foodRoute.route("/updateTimeFoodProducts").put(updateTimeFoodProducts);
 // foodRoute.route("/fetchFoodTypes").get(fetchFoodTypes);
