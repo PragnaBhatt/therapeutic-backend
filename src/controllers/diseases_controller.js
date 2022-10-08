@@ -38,22 +38,24 @@ const fetchData = asyncWrapper(async (req, res, next) => {
     // .populate({ path: "food" })
 
     .aggregate([
-      {
-        $match: match,
-      },
       // {
-      //   $lookup: {
-      //     from: "FoodModel",
-      //     localField: "diseases",
-      //     foreignField: "name",
-      //     as: "diseases", // alias
-      //   },
+      //   $match: match,
       // },
+      
+      {
+        $lookup: {
+          from: "FoodModel",
+          localField: "food",
+          foreignField: "name",
+          as: "data", // alias
+        },
+      },
     ]);
   // .sort({ noOfViews: -1 });
 
   res.status(StatusCodes.OK).json({ data });
 });
+
 const fetch = asyncWrapper(async (req, res, next) => {
   // var skip = Date.now() / 9;
   var match = {};

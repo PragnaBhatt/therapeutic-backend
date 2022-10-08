@@ -68,18 +68,18 @@ foodSchema.virtual("noteOfUser", {
   // },
 });
 
-foodSchema.virtual("Check", {
-  ref: "diseases",
+// foodSchema.virtual("Check", {
+//   ref: "diseases",
 
-  localField: "name",
-  foreignField: "food",
-  justOne: false,
-  options: {
-    match: {
-      food: this.name,
-    },
-  },
-});
+//   localField: "name",
+//   foreignField: "food",
+//   justOne: false,
+//   options: {
+//     match: {
+//       food: this.name,
+//     },
+//   },
+// });
 foodSchema.set("toObject", { virtuals: true });
 
 foodSchema.set("toJSON", { virtuals: true });
