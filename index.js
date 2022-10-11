@@ -43,6 +43,7 @@ app.use("/food/user", userRoute);
 app.use("/food/diseases", diseasesRoute);
 
 app.use("/images", express.static("images"));
+app.use("/user_images", express.static("user_images"));
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
